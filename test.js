@@ -44,8 +44,8 @@ function initQuestion(startText, correctAnswer){ //in  the name of the function
 }
 
 let questions = [
-    initQuestion("name that red plumber",["mario", "luigi"],0), //question objects
-    initQuestion("name that red plumber",["mario", "luigi"],0),
+    initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","A"), //question objects
+    initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michaelname that red plumber","A"),
 ]
 
 console.log(question.startText) //printing start text
