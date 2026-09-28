@@ -1,7 +1,9 @@
-initQuestion:
+initQuestion: //initialises question objects
   inputs = 
     startText -> <string> this is the actual question INCLUDE ANSWERS
     correctAnswer -> <int> index of the correct answer
   outputs =
     question <object> {same as input}
     
+askQuestion: //presents the questions to the player, validates their inputs, and updates score and relevant values
+  no inputs or outputs
