@@ -1,6 +1,20 @@
 const prompt = require("readline-sync");
 
-//something to ask the player what enemy they want
+//get player info
+let playerNameInput = prompt.question("Please enter your name:");
+let difficultyInput = "";
+let questionN = 0;
+
+do{
+     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard:");
+     difficultyInput = difficultyInput.toLowerCase();
+}while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
+
+//player information stored in object
+let playerInfo =
+{
+    playerName: playerNameInput, difficulty: difficultyInput
+};
 
 //main quiz section
 
@@ -11,7 +25,7 @@ function initQuestion(startText, correctAnswer){ //in the name of the function
     }
     return question;
 }
-let questionN = 0; //REMOVE THIS WHEN MERGING
+
 function askQuestion(){
     
     console.log(questions[questionN].startText + "\n")
