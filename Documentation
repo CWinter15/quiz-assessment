@@ -1,0 +1,7 @@
+initQuestion:
+  inputs = 
+    startText -> <string> this is the actual question INCLUDE ANSWERS
+    correctAnswer -> <int> index of the correct answer
+  outputs =
+    question <object> {same as input}
+    
