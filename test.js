@@ -28,17 +28,17 @@ let player = {
 //doesnt have proper syntax just for example \/
 //explaining how the questions could work
 /*
+\/example of what an instance of the object could look like
 let question = {
-    startText: "name that red plumber",
-    answers: ["mario", "luigi"],
+    startText: "name that red plumber: ",
     correctAnswer: 0 //index of correct answer
 }
-
-function initQuestion(startText, answer, correctAnswer){ //in  the name of the function
+-------------------------------------------
+example psuedo code
+function initQuestion(startText, correctAnswer){ //in  the name of the function
     let question = {
         startText: startText,
-        answers: answer,
-        correctAnswer: correctAnswer //index of correct answer
+        correctAnswer: correctAnswer //correct answer string
     }
     return question;
 }
@@ -49,9 +49,8 @@ let questions = [
 ]
 
 console.log(question.startText) //printing start text
-console.log(answers)
-answer = prompt 
-if answer = quetsion[0].answer[question[0].correctAnswer]
+answer = prompt
+if answer = quetsion[0].correct answer
 
 for i -5
 {
