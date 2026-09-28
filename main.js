@@ -17,6 +17,12 @@ let playerInfo =
 };
 
 //main quiz section
+//stores how many questions the player has got right and wrong
+let scoreStatus = 
+{
+   correctAnswers: 0,
+   wrongAnswers: 0
+};
 
 function initQuestion(startText, correctAnswer){ //in the name of the function
     let question = {
@@ -43,18 +49,32 @@ function askQuestion(){
     }
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
-        //ADD CODE FOR CORRECT ANSWER ONCE VARIABLES EXIST
-        //score += value
+        //adds 1 to correct answers
+        scoreStatus.correctAnswers += 1;
     }else{
         console.log("Incorrect")
-        //ADD CODE FOR INCORRECT ANSWER ONCE VARIABLES EXIST
+        //adds 1 to wrong answers
+        scoreStatus.wrongAnswers += 1;
     }
 }
 
 let questions = [
     initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"), //placeholder
-    initQuestion("Question 2\nA)1   B)2\nC)3   D)4","c"),
-    //enter real questions here
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what is the exploding minecraft enemy\nA)Stalker   B)Creeper\nC)Bob-omb   D)Splody man","b"),
+    initQuestion("what iconic wii game has you play bowling\nA)Bowl-o-rama   B)Wii sports\nC)Wii bowling   D)Bowling simulator","b"),
+    initQuestion("name that yellow electric mouse\nA)Pikachu   B)Shocky Rat\nC)Dedene   D)Picachu","a"),
+    initQuestion("How many chaos emeralds are there\nA)2   B)6\nC)5   D)7","d"),
+    initQuestion("What theme plays when you fight sans in undertale\nA)The world revolving   B)Megalovania\nC)Bonetrousle   D)A fight against sans","d"),
+    initQuestion("what device goes on the players wrist in fallout 4\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d")
+    //questions stored in an array
 ]
 //win condition checks should include this function below to continue gameplay
 askQuestion();
