@@ -4,7 +4,7 @@ const prompt = require("readline-sync");
 
 //main quiz section
 
-function initQuestion(startText, correctAnswer){ //in  the name of the function
+function initQuestion(startText, correctAnswer){ //in the name of the function
     let question = {
         startText: startText,
         correctAnswer: correctAnswer //correct answer string
@@ -30,12 +30,11 @@ function askQuestion(){
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
         //ADD CODE FOR CORRECT ANSWER ONCE VARIABLES EXIST
+        //score += value
     }else{
         console.log("Incorrect")
         //ADD CODE FOR INCORRECT ANSWER ONCE VARIABLES EXIST
     }
-    
-
 }
 
 let questions = [
@@ -43,4 +42,5 @@ let questions = [
     initQuestion("Question 2\nA)1   B)2\nC)3   D)4","c"),
     //enter real questions here
 ]
+//win condition checks should include this function below to continue gameplay
 askQuestion();
