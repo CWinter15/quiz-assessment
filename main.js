@@ -4,11 +4,21 @@ const prompt = require("readline-sync");
 let playerNameInput = prompt.question("Please enter your name:");
 let difficultyInput = "";
 let questionN = 0;
+let totalQuestions = 0;
 
 do{
      difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard:");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
+
+//set how many questions there are
+if(difficultyInput == "easy"){
+totalQuestions = 5;
+}else if(difficultyInput == "medium"){
+    totalQuestions = 10;
+}else if(difficultyInput == "hard"){
+    totalQuestions = 15;
+}
 
 //player information stored in object
 let playerInfo =
@@ -22,7 +32,7 @@ let scoreStatus =
 {
    correctAnswers: 0,
    wrongAnswers: 0
-};
+}; 
 
 function initQuestion(startText, correctAnswer){ //in the name of the function
     let question = {
@@ -77,4 +87,11 @@ let questions = [
     //questions stored in an array
 ]
 //win condition checks should include this function below to continue gameplay
-askQuestion();
+
+for(let i=0; i<totalQuestions; i++){
+askQuestion(i);
+
+ if(scoreStatus.wrongAnswers == 3){
+    break;
+ }
+}
