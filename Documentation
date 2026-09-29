@@ -6,7 +6,9 @@ initQuestion: //initialises question objects
     question <object> {same as input}
     
 askQuestion: //presents the questions to the player, validates their inputs, and updates score and relevant values
-  no inputs or outputs
+  inputs = 
+    wrong -> <int> number of wrong answers
+  no outputs
 
 printAfterPause //prints after a pause, does not stop code so all prints after should go through this function
   inputs =
