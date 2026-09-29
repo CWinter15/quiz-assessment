@@ -44,7 +44,7 @@ function initQuestion(startText, correctAnswer){ //in the name of the function
 
 function askQuestion(){
     
-    console.log(questions[questionN].startText + "\n")
+    console.log(`Question ${questionN + 1}: ${questions[questionN].startText}\n`);
 
     let answer;
     let valid = false;
@@ -66,6 +66,7 @@ function askQuestion(){
         //adds 1 to wrong answers
         scoreStatus.wrongAnswers += 1;
     }
+    questionN++;
 }
 
 let questions = [
@@ -89,7 +90,7 @@ let questions = [
 //win condition checks should include this function below to continue gameplay
 
 for(let i=0; i<totalQuestions; i++){
-askQuestion(i);
+    askQuestion();
 
  if(scoreStatus.wrongAnswers == 3){
     break;
