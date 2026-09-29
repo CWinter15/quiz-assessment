@@ -4,11 +4,21 @@ const prompt = require("readline-sync");
 let playerNameInput = prompt.question("Please enter your name:");
 let difficultyInput = "";
 let questionN = 0;
+let totalQuestions = 0;
 
 do{
      difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard:");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
+
+//set how many questions there are
+if(difficultyInput == "easy"){
+totalQuestions = 5;
+}else if(difficultyInput == "medium"){
+    totalQuestions = 10;
+}else if(difficultyInput == "hard"){
+    totalQuestions = 15;
+}
 
 //player information stored in object
 let playerInfo =
@@ -22,7 +32,7 @@ let scoreStatus =
 {
    correctAnswers: 0,
    wrongAnswers: 0
-};
+}; 
 
 function initQuestion(startText, correctAnswer){ //in the name of the function
     let question = {
@@ -65,16 +75,23 @@ let questions = [
     initQuestion("what iconic wii game has you play bowling\nA)Bowl-o-rama   B)Wii sports\nC)Wii bowling   D)Bowling simulator","b"),
     initQuestion("name that yellow electric mouse\nA)Pikachu   B)Shocky Rat\nC)Dedene   D)Picachu","a"),
     initQuestion("How many chaos emeralds are there\nA)2   B)6\nC)5   D)7","d"),
-    initQuestion("What theme plays when you fight sans in undertale\nA)The world revolving   B)Megalovania\nC)Bonetrousle   D)A fight against sans","d"),
-    initQuestion("what device goes on the players wrist in fallout 4\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d")
+    initQuestion("What theme plays when you fight sans in undertale\nA)The world revolving   B)Megalovania\nC)Bonetrousle   D)A fight against sans","b"),
+    initQuestion("what device goes on the players wrist in fallout 4\nA)pip-girl   B)pip-man\nC)pip-boy   D)bunker-watch","c"),
+    initQuestion("what is the name of playstations robot character\nA)Astro   B)Bot\nC)G.L.A.D.O.S   D)Data","a"),
+    initQuestion("what is the blade of evil's bane\nA)Excalibur   B)Keyblade\nC)Glamdring   D)Master Sword","d"),
+    initQuestion("What character will scold you for changing the 3ds time in the yo-kai watch series\nA)Gargaros   B)Gregg\nC)Ogralos   D)Orcanos","a"),
+    initQuestion("what is Alegander Jamfoot's favourite bugsnak\nA)Bunger   B)Cappucceettle\nC)Scoopy Banoopy   D)Pizza","b"),
+    initQuestion("Who is the protagonist of blue prince\nA)Alvin   B)Simon\nC)Theodore   D)Arthur","b"),
+    initQuestion("What is the serial number of queen from deltarune\nA)Q5U4EX7YY2E9N   B)RGN533F08\nC)D31T9RUN3   D)AFD6J5HBFY67T","a"),
+    initQuestion("What game has been run on nearly everything\nA)Minecraft   B)Doom\nC)GTA6   D)Sonic The hedgehog 06","b")
     //questions stored in an array
 ]
 //win condition checks should include this function below to continue gameplay
-askQuestion();
+
+for(let i=0; i<totalQuestions; i++){
+askQuestion(i);
+
+ if(scoreStatus.wrongAnswers == 3){
+    break;
+ }
+}
