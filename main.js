@@ -1,5 +1,7 @@
 const prompt = require("readline-sync");
+const consoleClear = require("console-clear");
 
+consoleClear();
 //get player info
 let playerNameInput = prompt.question("Please enter your name: ");
 let difficultyInput = "";
@@ -10,7 +12,7 @@ do{
      difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
-
+consoleClear();
 //set how many questions there are and an intro message
 if(difficultyInput == "easy"){
 totalQuestions = 5;
@@ -22,6 +24,7 @@ console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
     totalQuestions = 15;
     console.log("Welcome " + playerNameInput + " are you ready to roll the dice with the king himself?")
 }
+console.log("")
 
 //player information stored in object
 let playerInfo =
@@ -60,6 +63,7 @@ function askQuestion(){
             console.log("Invalid answer");
         }
     }
+    consoleClear();
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
         //adds 1 to correct answers
@@ -76,7 +80,6 @@ function askQuestion(){
                 console.log(`Woah there that ain't right (looks like the boss is about to add to his collection)`);
             break;
             default:
-            case("easy"):
                 console.log(`incorrect`);
             break;
             
@@ -86,6 +89,7 @@ function askQuestion(){
         scoreStatus.wrongAnswers += 1;
 
     }
+    console.log("")
     questionN++;
 }
 function printAfterPause(string, time){
@@ -95,6 +99,7 @@ function printAfterPause(string, time){
     return time + 500;
 }
 function displayResults(wrong){
+    consoleClear();
     let time = 500
     if(wrong == 3){
         //code
@@ -113,7 +118,7 @@ function displayResults(wrong){
                 time = printAfterPause("You lost my quiz, it's clear to see, with 3 wrong answers you can't defeat me", time)
             break;
             case("hard"):
-                time = printAfterPause(`Well, well, well you lost... sorry ${playerName} seems that soul don't belong to you anymore`,time)
+                time = printAfterPause(`Well, well, well you lost... sorry ${playerInfo.playerName} seems that soul don't belong to you anymore`,time)
             break;
         }
         return 0;
