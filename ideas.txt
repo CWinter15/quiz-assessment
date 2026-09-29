@@ -1,3 +1,4 @@
 adding proper score -
 adding a time based mechanic
 add a menu - title screen type set up
+add hints
