@@ -44,7 +44,7 @@ function initQuestion(startText, correctAnswer){ //in the name of the function
 
 function askQuestion(){
     
-    console.log(`Question ${questionN + 1}: ${questions[questionN].startText}\n`);
+    console.log(`Question ${questionN + 1}:\n${questions[questionN].startText}\n`);
 
     let answer;
     let valid = false;
@@ -62,11 +62,72 @@ function askQuestion(){
         //adds 1 to correct answers
         scoreStatus.correctAnswers += 1;
     }else{
-        console.log("Incorrect")
+        switch(playerInfo.difficulty){
+            case("easy"):
+                console.log(`Mike!! Bring out the tissues!! ${playerInfo.playerName} got a question wrong.`);
+            break;
+            case("medium"):
+                console.log(`change this to be in character`);
+            break;
+            case("hard"):
+                console.log(`change this to be in character`);
+            break;
+            default:
+            case("easy"):
+                console.log(`incorrect`);
+            break;
+            
+        }
+        
         //adds 1 to wrong answers
         scoreStatus.wrongAnswers += 1;
+
     }
     questionN++;
+}
+function displayResults(){
+    if(playerInfo.wrongAnswers === 3){
+        //code
+        return;
+    }
+    let addSpace = ""
+    for (var i = 0; i<playerInfo.playerName.length; i++){ //adds a space to ascii based on player name length to help alignment
+        addSpace += " "
+    }
+    switch(playerInfo.difficulty){
+        case("easy"):
+            console.log(` ${addSpace}                              _____           ____    _____  ____    _____
+${addSpace}               \\            / |     |  |\\   | |    \\  |      |    |  |      |     | |
+${addSpace}                \\    /\\    /  |     |  | \\  | |     | |_____ |____|  |_____ |     | |
+${addSpace}                 \\  /  \\  /   |     |  |  \\ | |     | |      |    \\  |      |     | |
+WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What an    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance What an WONDERFUL performance`);
+            console.log(`It's (TV) time to look at those scores...`);
+            console.log(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`);
+            if(scoreStatus.wrongAnswers > 0){
+                console.log(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${scoreStatus.wrongAnswers} questions incorrectly [looks performatively glooby]`);
+
+            }else{
+                console.log(`                 _____ 
+                |       |      |  |\\   |
+                |_____  |      |  | \\  |
+                |       |      |  |  \\ |
+OH! look at the |       |______|  |   \\| meter!!!`);
+                console.log(`${playerInfo.playerName.toUpperCase()} GOT NO QUESTIONS WRONG!!!`);
+
+            }
+            //console.log(`With a final score of...`);
+            //console.log(`It's (TV) time to look at those scores...`);
+        break;
+        case("medium"):
+
+        break;
+        case("hard"):
+
+        break;
+        default:
+            console.log("ERROR: either player entered a difficulty that does not exits, or there is a problem with the switch cases");
+        break;
+    }
 }
 
 let questions = [
@@ -96,3 +157,4 @@ for(let i=0; i<totalQuestions; i++){
     break;
  }
 }
+displayResults()
