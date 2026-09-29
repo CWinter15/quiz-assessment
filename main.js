@@ -1,13 +1,13 @@
 const prompt = require("readline-sync");
 
 //get player info
-let playerNameInput = prompt.question("Please enter your name:");
+let playerNameInput = prompt.question("Please enter your name: ");
 let difficultyInput = "";
 let questionN = 0;
 let totalQuestions = 0;
 
 do{
-     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard:");
+     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
 
@@ -70,10 +70,10 @@ function askQuestion(){
                 console.log(`Mike!! Bring out the tissues!! ${playerInfo.playerName} got a question wrong.`);
             break;
             case("medium"):
-                console.log(`change this to be in character`);
+                console.log(`More of that, that would be great, Battered and bruised that is your fate [incorrect]`);
             break;
             case("hard"):
-                console.log(`change this to be in character`);
+                console.log(`Woah there that ain't right (looks like the boss is about to add to his collection)`);
             break;
             default:
             case("easy"):
@@ -94,11 +94,29 @@ function printAfterPause(string, time){
     }, time);
     return time + 500;
 }
-function displayResults(){
+function displayResults(wrong){
     let time = 500
-    if(playerInfo.wrongAnswers === 3){
+    if(wrong == 3){
         //code
-        return;
+        switch(playerInfo.difficulty){
+            case("easy"):
+                time = printAfterPause("Aw, you lost! Though, you know what that means", time);
+                time = printAfterPause("Another round!", time);
+                time = printAfterPause("It's",time);
+                time += 100;
+                time = printAfterPause("TV",time);
+                time += 200;
+                time = printAfterPause("T-",time);
+
+            break;
+            case("medium"):
+                time = printAfterPause("You lost my quiz, it's clear to see, with 3 wrong answers you can't defeat me", time)
+            break;
+            case("hard"):
+                time = printAfterPause(`Well, well, well you lost... sorry ${playerName} seems that soul don't belong to you anymore`,time)
+            break;
+        }
+        return 0;
     }
     let addSpace = ""
     for (var i = 0; i<playerInfo.playerName.length; i++){ //adds a space to ascii based on player name length to help alignment
@@ -114,9 +132,13 @@ ${addSpace}                \\  /  \\  /   |     |  |  \\ | |     | |      |    \
 WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance!`, time);
             time = printAfterPause(`It's (TV) time to look at those scores...`,time);
             time = printAfterPause(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`, time);
-            if(scoreStatus.wrongAnswers > 0){
+            if(wrong > 0){
                 time += 100;
-                time = printAfterPause(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${scoreStatus.wrongAnswers} questions incorrectly [looks performatively glooby]`,time);
+                let plural = ""
+                if(wrong == 1){
+                    plural = "s"
+                }
+                time = printAfterPause(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${wrong} question${plural} incorrectly [looks performatively glooby]`,time);
 
             }else{
                 time += 100;
@@ -145,10 +167,28 @@ OH! look at the |       |______|  |   \\| meter!!!`,time);
             time = printAfterPause("T-",time);
         break;
         case("medium"):
-
+            time = printAfterPause("Drat the dreaded player won but I wasn't done having my fun",time);
+            if(wrong < 1){
+                time = printAfterPause("All questions right?! This cannot be. I must take flight, loss doesnt suit me.",time);
+            }else{
+                let plural = ""
+                if(wrong == 1){
+                    plural = "s"
+                }
+                time = printAfterPause(`I preferred the ${wrong} time${plural} you failed, after that you should have bailed`,time);
+            }
         break;
         case("hard"):
-
+            time = printAfterPause("You won... The boss won't be happy about this",time);
+            if(wrong < 1){
+                time = printAfterPause("Well, you rolled the dice and won, I'll betcha the boss has an offer you won't be able to resist\n[you got all questions correct!]",time);
+            }else{
+                let plural = ""
+                if(wrong == 1){
+                    plural = "s"
+                }
+                time = printAfterPause(`And they only got ${wrong} question${plural} wrong`,time);
+            }
         break;
         default:
             console.log("ERROR: either player entered a difficulty that does not exits, or there is a problem with the switch cases");
@@ -183,4 +223,5 @@ for(let i=0; i<totalQuestions; i++){
     break;
  }
 }
-displayResults()
+
+displayResults(scoreStatus.wrongAnswers)
