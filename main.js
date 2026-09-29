@@ -24,10 +24,10 @@ if(difficultyInput == "easy"){
     console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
 }else if(difficultyInput == "medium"){
     totalQuestions = 10;
-    console.log("Welcome all to Gruntilda's lair, now be warned i'm no nice witch, player");
+    console.log("\nWelcome all to Gruntilda's lair, now be warned i'm no nice witch, player\n");
 }else if(difficultyInput == "hard"){
     totalQuestions = 15;
-    console.log("Welcome " + playerNameInput + " are you ready to roll the dice with the king himself?")
+    console.log("\nWelcome " + playerNameInput + " are you ready to roll the dice with the king himself?\n")
 }
 
 console.log("")

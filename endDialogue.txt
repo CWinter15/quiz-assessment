@@ -1,0 +1,10 @@
+GRUNTILDA WIN - Drat the dreaded player won but i wasn't done having my fun
+GRUNTILDA ALL QUESTIONS CORRECT - All questions right?! this cannot be, I must take flight loss doesnt suit me
+GRUNTILDA LOSS - You lost my quiz it's plane to see, with 3 wrong answers you can't defeat me
+GRUNTILDA WRONG QUESTIONS - I preferred the + wrongAnswers + times you failed, after that you should have bailed
+GRUNTILDA INCORRECT - More of that, that would be great, Battered and bruised that is your fate
+KING DICE WIN - The boss won't be happy about this
+KING DICE ALL QUESTIONS CORRECT - Well you rolled the dice and won, i'll betcha the boss has an offer you won't be able to resist
+KING DICE LOSS - Well, well, well you lost... sorry + playerName + seems that soul don't belong to you anymore
+KING DICE WRONG QUESTIONS - And they only got + wrongAnswers + questions wrong
+KING DICE INCORRECT - Woah there that ain't right (looks like the boss is about to add to his collection)

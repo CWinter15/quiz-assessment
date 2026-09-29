@@ -6,4 +6,13 @@ initQuestion: //initialises question objects
     question <object> {same as input}
     
 askQuestion: //presents the questions to the player, validates their inputs, and updates score and relevant values
-  no inputs or outputs
+  inputs = 
+    wrong -> <int> number of wrong answers
+  no outputs
+
+printAfterPause //prints after a pause, does not stop code so all prints after should go through this function
+  inputs =
+    string -> <string> the text to print
+    time -> how long to wait for
+  outputs =
+    time (this should be stored in a variable and then passed back in to this function the next time it is used to keep pause dialogue in order)
