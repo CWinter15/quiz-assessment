@@ -1,22 +1,27 @@
 const prompt = require("readline-sync");
 const consoleClear = require("console-clear");
 
-consoleClear();
+
+consoleClear(); //clears the terminal
+
 //get player info
 let playerNameInput = prompt.question("Please enter your name: ");
 let difficultyInput = "";
 let questionN = 0;
 let totalQuestions = 0;
 
+//validating difficulty input
 do{
      difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
+
 consoleClear();
+
 //set how many questions there are and an intro message
 if(difficultyInput == "easy"){
-totalQuestions = 5;
-console.log("\nSTARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!\n");
+    totalQuestions = 5;
+    console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
 }else if(difficultyInput == "medium"){
     totalQuestions = 10;
     console.log("\nWelcome all to Gruntilda's lair, now be warned i'm no nice witch, player\n");
@@ -24,6 +29,7 @@ console.log("\nSTARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!\n");
     totalQuestions = 15;
     console.log("\nWelcome " + playerNameInput + " are you ready to roll the dice with the king himself?\n")
 }
+
 console.log("")
 
 //player information stored in object
@@ -32,7 +38,6 @@ let playerInfo =
     playerName: playerNameInput, difficulty: difficultyInput
 };
 
-//main quiz section
 //stores how many questions the player has got right and wrong
 let scoreStatus = 
 {
@@ -40,20 +45,36 @@ let scoreStatus =
    wrongAnswers: 0
 }; 
 
-function initQuestion(startText, correctAnswer){ //in the name of the function
+/*
+initialises question objects
+    inputs =
+    startText -> <string> this is the actual question INCLUDE ANSWERS
+    correctAnswer -> <int> index of the correct answer
+  outputs =
+    question <object> {same as input}
+*/
+function initQuestion(startText, correctAnswer){
     let question = {
         startText: startText,
-        correctAnswer: correctAnswer //correct answer string
+        correctAnswer: correctAnswer
     }
     return question;
 }
 
+/*
+presents the questions to the player, validates their inputs, and updates score and relevant values
+  inputs = 
+    wrong -> <int> number of wrong answers
+  no outputs
+*/
 function askQuestion(){
     
     console.log(`Question ${questionN + 1}:\n${questions[questionN].startText}\n`);
 
     let answer;
     let valid = false;
+
+    //asks user for answer and checks validation
     while (!valid){
         answer = prompt.question("");
         answer = answer.toLowerCase();
@@ -63,48 +84,64 @@ function askQuestion(){
             console.log("Invalid answer");
         }
     }
+
     consoleClear();
+
+    //if answer is correct
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
         //adds 1 to correct answers
         scoreStatus.correctAnswers += 1;
     }else{
         switch(playerInfo.difficulty){
-            case("easy"):
+            case("easy"): //tenna
                 console.log(`Mike!! Bring out the tissues!! ${playerInfo.playerName} got a question wrong.`);
             break;
-            case("medium"):
+            case("medium"): //Gruntilda
                 console.log(`More of that, that would be great, Battered and bruised that is your fate [incorrect]`);
             break;
-            case("hard"):
+            case("hard"): //king dice
                 console.log(`Woah there that ain't right (looks like the boss is about to add to his collection)`);
-            break;
-            default:
-                console.log(`incorrect`);
             break;
             
         }
-        
-        //adds 1 to wrong answers
         scoreStatus.wrongAnswers += 1;
 
     }
     console.log("")
     questionN++;
 }
+
+/*
+prints after a pause, does not stop code so all prints after should go through this function
+    inputs =
+        string -> <string> the text to print
+        time -> how long to wait for
+    outputs =
+        time + 500 (this should be stored in a variable and then passed back in to this function the next time it is used to keep pause dialogue in order)
+*/
 function printAfterPause(string, time){
     setTimeout(() => {
         console.log(string)        
     }, time);
     return time + 500;
 }
+
+/*
+displays final results
+    inputs =
+        wrong -> <int> number of wrong answers
+    no outputs
+*/
 function displayResults(wrong){
+
     consoleClear();
     let time = 500
-    if(wrong == 3){
-        //code
+
+    //if the player failed the quiz
+    if(wrong == 3){ 
         switch(playerInfo.difficulty){
-            case("easy"):
+            case("easy"): //tenna
                 time = printAfterPause("Aw, you lost! Though, you know what that means", time);
                 time = printAfterPause("Another round!", time);
                 time = printAfterPause("It's",time);
@@ -112,24 +149,34 @@ function displayResults(wrong){
                 time = printAfterPause("TV",time);
                 time += 200;
                 time = printAfterPause("T-",time);
-
             break;
-            case("medium"):
+            case("medium"): //Gruntilda
                 time = printAfterPause("You lost my quiz, it's clear to see, with 3 wrong answers you can't defeat me", time)
             break;
-            case("hard"):
+            case("hard"): //king dice
                 time = printAfterPause(`Well, well, well you lost... sorry ${playerInfo.playerName} seems that soul don't belong to you anymore`,time)
             break;
         }
-        return 0;
+        return null; //output value not intended to be used.
     }
+
+    //adds a space to ascii based on player name length to help alignment
     let addSpace = ""
-    for (var i = 0; i<playerInfo.playerName.length; i++){ //adds a space to ascii based on player name length to help alignment
+    for (var i = 0; i<playerInfo.playerName.length; i++){
         addSpace += " "
     }
+
+    //adds "s" for strings that are not always plural
+    let plural = ""
+    if(wrong == 1){
+        plural = "s"
+    }
+
+    //actual results
     switch(playerInfo.difficulty){
 
         case("easy"): //tenna
+            //some code here is going to look messy because of the bigger text. It is not broken.
             time = printAfterPause(` ${addSpace}                             _____           ____    _____  ____    _____
 ${addSpace}              \\            / |     |  |\\   | |    \\  |      |    |  |      |     | |
 ${addSpace}               \\    /\\    /  |     |  | \\  | |     | |_____ |____|  |_____ |     | |
@@ -137,15 +184,9 @@ ${addSpace}                \\  /  \\  /   |     |  |  \\ | |     | |      |    \
 WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance!`, time);
             time = printAfterPause(`It's (TV) time to look at those scores...`,time);
             time = printAfterPause(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`, time);
-            if(wrong > 0){
-                time += 100;
-                let plural = ""
-                if(wrong == 1){
-                    plural = "s"
-                }
-                time = printAfterPause(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${wrong} question${plural} incorrectly [looks performatively glooby]`,time);
-
-            }else{
+            
+            //if the player got all questions right
+            if(wrong < 0){
                 time += 100;
                 time = printAfterPause(`                 _____ 
                 |       |      |  |\\   |
@@ -154,9 +195,10 @@ WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |____
 OH! look at the |       |______|  |   \\| meter!!!`,time);
                 time = printAfterPause(`${playerInfo.playerName.toUpperCase()} GOT NO QUESTIONS WRONG!!!`,time);
                 time = printAfterPause(`MARVELOUS!`, time);
-
+            }else{
+                time += 100;
+                time = printAfterPause(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${wrong} question${plural} incorrectly [looks performatively glooby]`,time);
             }
-            //console.log(`With a final score of...`);
             time += 200;
             time = printAfterPause(`AND WITH THAT folks, we have come to the end of this round.`,time);
             time = printAfterPause(`BUT DON'T TOUCH THAT DIAL, ${playerInfo.playerName.toLowerCase()}! You know what? We might just have time for one more round!`,time);
@@ -170,39 +212,34 @@ OH! look at the |       |______|  |   \\| meter!!!`,time);
             time = printAfterPause("TV",time);
             time += 200;
             time = printAfterPause("T-",time);
+            //program ends and cuts him off
         break;
-        case("medium"):
+        case("medium"): //Gruntilda
             time = printAfterPause("Drat the dreaded player won but I wasn't done having my fun",time);
+
+            //if the player got all questions right
             if(wrong < 1){
                 time = printAfterPause("All questions right?! This cannot be. I must take flight, loss doesnt suit me.",time);
             }else{
-                let plural = ""
-                if(wrong == 1){
-                    plural = "s"
-                }
                 time = printAfterPause(`I preferred the ${wrong} time${plural} you failed, after that you should have bailed`,time);
             }
         break;
-        case("hard"):
+        case("hard"): //king dice
             time = printAfterPause("You won... The boss won't be happy about this",time);
+
+            //if the player got all questions right
             if(wrong < 1){
                 time = printAfterPause("Well, you rolled the dice and won, I'll betcha the boss has an offer you won't be able to resist\n[you got all questions correct!]",time);
             }else{
-                let plural = ""
-                if(wrong == 1){
-                    plural = "s"
-                }
                 time = printAfterPause(`And they only got ${wrong} question${plural} wrong`,time);
             }
-        break;
-        default:
-            console.log("ERROR: either player entered a difficulty that does not exits, or there is a problem with the switch cases");
         break;
     }
 }
 
+//the array which stores the questions
 let questions = [
-    initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"), //placeholder
+    initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"),
     initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
     initQuestion("what is the exploding minecraft enemy\nA)Stalker   B)Creeper\nC)Bob-omb   D)Splody man","b"),
     initQuestion("what iconic wii game has you play bowling\nA)Bowl-o-rama   B)Wii sports\nC)Wii bowling   D)Bowling simulator","b"),
@@ -217,10 +254,9 @@ let questions = [
     initQuestion("Who is the protagonist of blue prince\nA)Alvin   B)Simon\nC)Theodore   D)Arthur","b"),
     initQuestion("What is the serial number of queen from deltarune\nA)Q5U4EX7YY2E9N   B)RGN533F08\nC)D31T9RUN3   D)AFD6J5HBFY67T","a"),
     initQuestion("What game has been run on nearly everything\nA)Minecraft   B)Doom\nC)GTA6   D)Sonic The hedgehog 06","b")
-    //questions stored in an array
 ]
-//win condition checks should include this function below to continue gameplay
 
+//main gameplay loop
 for(let i=0; i<totalQuestions; i++){
     askQuestion();
 
@@ -228,5 +264,5 @@ for(let i=0; i<totalQuestions; i++){
     break;
  }
 }
-
-displayResults(scoreStatus.wrongAnswers)
+//final results
+displayResults(scoreStatus.wrongAnswers);
