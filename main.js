@@ -14,13 +14,13 @@ do{
 //set how many questions there are and an intro message
 if(difficultyInput == "easy"){
 totalQuestions = 5;
-console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
+console.log("\nSTARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!\n");
 }else if(difficultyInput == "medium"){
     totalQuestions = 10;
-    console.log("Welcome all to Gruntilda's lair, now be warned i'm no nice witch, player");
+    console.log("\nWelcome all to Gruntilda's lair, now be warned i'm no nice witch, player\n");
 }else if(difficultyInput == "hard"){
     totalQuestions = 15;
-    console.log("Welcome " + playerNameInput + " are you ready to roll the dice with the king himself?")
+    console.log("\nWelcome " + playerNameInput + " are you ready to roll the dice with the king himself?\n")
 }
 
 //player information stored in object
