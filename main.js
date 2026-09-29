@@ -90,7 +90,6 @@ function askQuestion(){
     //if answer is correct
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
-        //adds 1 to correct answers
         scoreStatus.correctAnswers += 1;
     }else{
         switch(playerInfo.difficulty){
