@@ -85,7 +85,14 @@ function askQuestion(){
     }
     questionN++;
 }
+function printAfterPause(string, time){
+    setTimeout(() => {
+        console.log(string)        
+    }, time);
+    return time + 500;
+}
 function displayResults(){
+    let time = 500
     if(playerInfo.wrongAnswers === 3){
         //code
         return;
@@ -95,28 +102,44 @@ function displayResults(){
         addSpace += " "
     }
     switch(playerInfo.difficulty){
-        case("easy"):
-            console.log(` ${addSpace}                              _____           ____    _____  ____    _____
-${addSpace}               \\            / |     |  |\\   | |    \\  |      |    |  |      |     | |
-${addSpace}                \\    /\\    /  |     |  | \\  | |     | |_____ |____|  |_____ |     | |
-${addSpace}                 \\  /  \\  /   |     |  |  \\ | |     | |      |    \\  |      |     | |
-WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What an    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance What an WONDERFUL performance`);
-            console.log(`It's (TV) time to look at those scores...`);
-            console.log(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`);
+
+        case("easy"): //tenna
+            time = printAfterPause(` ${addSpace}                             _____           ____    _____  ____    _____
+${addSpace}              \\            / |     |  |\\   | |    \\  |      |    |  |      |     | |
+${addSpace}               \\    /\\    /  |     |  | \\  | |     | |_____ |____|  |_____ |     | |
+${addSpace}                \\  /  \\  /   |     |  |  \\ | |     | |      |    \\  |      |     | |
+WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance!`, time);
+            time = printAfterPause(`It's (TV) time to look at those scores...`,time);
+            time = printAfterPause(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`, time);
             if(scoreStatus.wrongAnswers > 0){
-                console.log(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${scoreStatus.wrongAnswers} questions incorrectly [looks performatively glooby]`);
+                time += 100;
+                time = printAfterPause(`And ${playerInfo.playerName.toLocaleUpperCase()} left audiences on the edge of their seats when they answered a total of ${scoreStatus.wrongAnswers} questions incorrectly [looks performatively glooby]`,time);
 
             }else{
-                console.log(`                 _____ 
+                time += 100;
+                time = printAfterPause(`                 _____ 
                 |       |      |  |\\   |
                 |_____  |      |  | \\  |
                 |       |      |  |  \\ |
-OH! look at the |       |______|  |   \\| meter!!!`);
-                console.log(`${playerInfo.playerName.toUpperCase()} GOT NO QUESTIONS WRONG!!!`);
+OH! look at the |       |______|  |   \\| meter!!!`,time);
+                time = printAfterPause(`${playerInfo.playerName.toUpperCase()} GOT NO QUESTIONS WRONG!!!`,time);
+                time = printAfterPause(`MARVELOUS!`, time);
 
             }
             //console.log(`With a final score of...`);
-            //console.log(`It's (TV) time to look at those scores...`);
+            time += 200;
+            time = printAfterPause(`AND WITH THAT folks, we have come to the end of this round.`,time);
+            time = printAfterPause(`BUT DON'T TOUCH THAT DIAL, ${playerInfo.playerName.toLowerCase()}! You know what? We might just have time for one more round!`,time);
+            time = printAfterPause("How exciting!!!",time);
+            time = printAfterPause("Aren't you excited!!",time);
+            time = printAfterPause("You'll play again,right?!",time)
+            time = printAfterPause("Say it with me!",time);
+            time += 100;
+            time = printAfterPause("It's",time);
+            time += 100;
+            time = printAfterPause("TV",time);
+            time += 200;
+            time = printAfterPause("T-",time);
         break;
         case("medium"):
 
