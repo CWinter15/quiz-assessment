@@ -167,7 +167,7 @@ function displayResults(wrong){
 
     //adds "s" for strings that are not always plural
     let plural = ""
-    if(wrong == 1){
+    if(wrong > 1){
         plural = "s"
     }
 
