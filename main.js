@@ -185,7 +185,7 @@ WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |____
             time = printAfterPause(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`, time);
             
             //if the player got all questions right
-            if(wrong < 0){
+            if(wrong === 0){
                 time += 100;
                 time = printAfterPause(`                 _____ 
                 |       |      |  |\\   |

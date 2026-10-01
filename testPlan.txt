@@ -1,0 +1,8 @@
+Required tests:
+1. Are the correct number of questions asked depending on the difficulty? y/n - Y
+2. Do all responses work and display correctly/when they're intended to? y/n - 
+3. Do the win and lose conditions trigger properly? y/n
+4.Are all answers correct? y/n - Y
+5.Find and resolve any errors
+6. Check all inputs to ensure no bugs occur(e.g line 185 with numbers in the string)
+//please add any other tests i missed 
