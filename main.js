@@ -4,7 +4,8 @@ const tenna = 0;
 const gruntilda = 1;
 const kingDice = 2;
 
-
+//--------------------------------------------------------------------------------------------
+//set up \/
 consoleClear(); //clears the terminal
 
 //get player info
@@ -15,7 +16,7 @@ let totalQuestions = 0;
 
 //validating difficulty input
 do{
-     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
+     difficultyInput = prompt.question("Please choose a difficulty between easy, medium and hard: ");
      difficultyInput = difficultyInput.toLowerCase();
 }while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
 
@@ -27,10 +28,10 @@ if(difficultyInput == "easy"){
     console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
 }else if(difficultyInput == "medium"){
     totalQuestions = 10;
-    console.log("\nWelcome all to Gruntilda's lair, now be warned i'm no nice witch, player\n");
+    console.log("\nWelcome all to Gruntilda's lair. Now be warned, I'm no nice witch, player\n");
 }else if(difficultyInput == "hard"){
     totalQuestions = 15;
-    console.log("\nWelcome " + playerNameInput + " are you ready to roll the dice with the king himself?\n")
+    console.log("\nWelcome " + playerNameInput + ", are you ready to roll the dice with the king himself?\n")
 }
 
 console.log("")
@@ -48,6 +49,8 @@ let scoreStatus =
    wrongAnswers: 0
 }; 
 
+//--------------------------------------------------------------------------------------------
+//functions \/ (moving them anywhere else breaks the code)
 /*
 initialises question objects
     inputs =
@@ -211,7 +214,7 @@ function displayResults(wrong){
             if(wrong < 1){
                 time = printAfterPause(responses[gruntilda][3],time);
             }else{
-                time = printAfterPause(`I preferred the ${wrong} time${plural} you failed, after that you should have bailed`,time);
+                time = printAfterPause(`I preferred the ${wrong} time${plural} you failed. After that, you should have bailed.`,time);
             }
         break;
         case("hard"): //king dice
@@ -221,29 +224,31 @@ function displayResults(wrong){
             if(wrong < 1){
                 time = printAfterPause(responses[kingDice][3],time);
             }else{
-                time = printAfterPause(`And they only got ${wrong} question${plural} wrong`,time);
+                time = printAfterPause(`And they only got ${wrong} question${plural} wrong...`,time);
             }
         break;
     }
 }
 
+//--------------------------------------------------------------------------------------------
+//main dialogue \/
 //the array which stores the questions
 let questions = [
-    initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"),
-    initQuestion("what does pac-man face\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
-    initQuestion("what is the exploding minecraft enemy\nA)Stalker   B)Creeper\nC)Bob-omb   D)Splody man","b"),
-    initQuestion("what iconic wii game has you play bowling\nA)Bowl-o-rama   B)Wii sports\nC)Wii bowling   D)Bowling simulator","b"),
-    initQuestion("name that yellow electric mouse\nA)Pikachu   B)Shocky Rat\nC)Dedene   D)Picachu","a"),
-    initQuestion("How many chaos emeralds are there\nA)2   B)6\nC)5   D)7","d"),
-    initQuestion("What theme plays when you fight sans in undertale\nA)The world revolving   B)Megalovania\nC)Bonetrousle   D)A fight against sans","b"),
-    initQuestion("what device goes on the players wrist in fallout 4\nA)pip-girl   B)pip-man\nC)pip-boy   D)bunker-watch","c"),
-    initQuestion("what is the name of playstations robot character\nA)Astro   B)Bot\nC)G.L.A.D.O.S   D)Data","a"),
-    initQuestion("what is the blade of evil's bane\nA)Excalibur   B)Keyblade\nC)Glamdring   D)Master Sword","d"),
-    initQuestion("What character will scold you for changing the 3ds time in the yo-kai watch series\nA)Gargaros   B)Gregg\nC)Ogralos   D)Orcanos","a"),
-    initQuestion("what is Alegander Jamfoot's favourite bugsnak\nA)Bunger   B)Cappucceettle\nC)Scoopy Banoopy   D)Pizza","b"),
-    initQuestion("Who is the protagonist of blue prince\nA)Alvin   B)Simon\nC)Theodore   D)Arthur","b"),
-    initQuestion("What is the serial number of queen from deltarune\nA)Q5U4EX7YY2E9N   B)RGN533F08\nC)D31T9RUN3   D)AFD6J5HBFY67T","a"),
-    initQuestion("What game has been run on nearly everything\nA)Minecraft   B)Doom\nC)GTA6   D)Sonic The hedgehog 06","b")
+    initQuestion("Name that red plumber?\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"),
+    initQuestion("What does pac-man face?\nA)Berries   B)Cats\nC)Vampires   D)Ghosts","d"),
+    initQuestion("What is the exploding minecraft enemy?\nA)Stalker   B)Creeper\nC)Bob-omb   D)Splody man","b"),
+    initQuestion("What iconic Wii game has you play bowling?\nA)Bowl-o-rama   B)Wii Sports\nC)Wii Bowling   D)Bowling Simulator","b"),
+    initQuestion("Name that yellow electric mouse?\nA)Pikachu   B)Shocky Rat\nC)Dedene   D)Picachu","a"),
+    initQuestion("How many chaos emeralds are there?\nA)2   B)6\nC)5   D)7","d"),
+    initQuestion("What theme plays when you fight Sans in Undertale?\nA)The World Revolving   B)Megalovania\nC)Bonetrousle   D)A Fight Against Sans","b"),
+    initQuestion("What device goes on the players wrist in Fallout 4?\nA)pip-girl   B)pip-man\nC)pip-boy   D)bunker-watch","c"),
+    initQuestion("What is the name of Playstations robot character?\nA)Astro   B)Bot\nC)G.L.A.D.O.S   D)Data","a"),
+    initQuestion("What is the blade of evil's bane?\nA)Excalibur   B)Keyblade\nC)Glamdring   D)Master Sword","d"),
+    initQuestion("What character will scold you for changing the 3DS time in the Yo-kai Watch series?\nA)Gargaros   B)Gregg\nC)Ogralus   D)Orcanos","a"),
+    initQuestion("What is Alegander Jamfoot's favourite bugsnak?\nA)Bunger   B)Cappucceettle\nC)Scoopy Banoopy   D)Pizza","b"),
+    initQuestion("Who is the protagonist of Blue Prince?\nA)Alvin   B)Simon\nC)Theodore   D)Arthur","b"),
+    initQuestion("What is the serial number of queen from Deltarune?\nA)Q5U4EX7YY2E9N   B)RGN533F08\nC)D31T9RUN3   D)AFD6J5HBFY67T","a"),
+    initQuestion("What game has been run on nearly everything?\nA)Minecraft   B)Doom\nC)GTA6   D)Sonic The Hedgehog 06","b")
 ]
 //adds a space to ascii based on player name length to help alignment
 let addSpace = ""
@@ -258,7 +263,7 @@ ${addSpace}              \\            / |     |  |\\   | |    \\  |      |    |
 ${addSpace}               \\    /\\    /  |     |  | \\  | |     | |_____ |____|  |_____ |     | |
 ${addSpace}                \\  /  \\  /   |     |  |  \\ | |     | |      |    \\  |      |     | |
 WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |_____|  |   \\| |____/  |_____ |     \\ |      |_____| |_____ performance!`,
-    `It's (TV) time to look at those scores...`,
+    `It's (TV) Time to look at those scores...`,
     `AND WITH THAT folks, we have come to the end of this round.`,
     `BUT DON'T TOUCH THAT DIAL, ${playerInfo.playerName.toLowerCase()}! You know what? We might just have time for one more round!`,
     "How exciting!!!",
@@ -275,24 +280,26 @@ WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |____
 OH! look at the |       |______|  |   \\| meter!!!`,
     `${playerInfo.playerName.toUpperCase()} GOT NO QUESTIONS WRONG!!!`,
     `MARVELOUS!`,
-    "Aw, you lost! Though, you know what that means",
+    "Aw, you lost! Though, you know what that means...?",
     "Another round!",
     `Mike!! Bring out the tissues!! ${playerInfo.playerName} got a question wrong.`
     ],
     [ //gruntilda
-        `More of that, that would be great, Battered and bruised that is your fate [incorrect]`,
-        "You lost my quiz, it's clear to see, with 3 wrong answers you can't defeat me",
-        "Drat the dreaded player won but I wasn't done having my fun",
-        "All questions right?! This cannot be. I must take flight, loss doesnt suit me."
+        `More of that, that would be great. Battered and bruised, that is your fate [incorrect]`,
+        "You lost my quiz, it's clear to see. With 3 wrong answers, you can't defeat me",
+        "Drat, the dreaded player won, but I wasn't done having my fun",
+        "All questions right?! This cannot be! I must take flight. Loss doesnt suit me."
     ],
     [
-        `Woah there that ain't right (looks like the boss is about to add to his collection)`,
-        `Well, well, well you lost... sorry ${playerInfo.playerName} seems that soul don't belong to you anymore`,
+        `Woah there, that ain't right (looks like the boss is about to add to his collection)`,
+        `Well, well, well you lost... Sorry ${playerInfo.playerName}, seems that soul don't belong to you anymore`,
         "You won... The boss won't be happy about this",
-        "Well, you rolled the dice and won, I'll betcha the boss has an offer you won't be able to resist\n[you got all questions correct!]"
+        "Well, you rolled the dice and won. I'll betcha the boss has an offer you won't be able to resist\n[you got all questions correct!]"
     ]
 ]
 
+//--------------------------------------------------------------------------------------------
+//where the main part of the quiz is triggered from \/
 //main gameplay loop
 for(let i=0; i<totalQuestions; i++){
     askQuestion();
