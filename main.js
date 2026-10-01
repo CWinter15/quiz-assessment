@@ -1,8 +1,50 @@
 const prompt = require("readline-sync");
 const consoleClear = require("console-clear");
 
-//--------------------------------------------------------------------------------------------
-//functions \/
+
+consoleClear(); //clears the terminal
+
+//get player info
+let playerNameInput = prompt.question("Please enter your name: ");
+let difficultyInput = "";
+let questionN = 0;
+let totalQuestions = 0;
+
+//validating difficulty input
+do{
+     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
+     difficultyInput = difficultyInput.toLowerCase();
+}while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
+
+consoleClear();
+
+//set how many questions there are and an intro message
+if(difficultyInput == "easy"){
+    totalQuestions = 5;
+    console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
+}else if(difficultyInput == "medium"){
+    totalQuestions = 10;
+    console.log("\nWelcome all to Gruntilda's lair, now be warned i'm no nice witch, player\n");
+}else if(difficultyInput == "hard"){
+    totalQuestions = 15;
+    console.log("\nWelcome " + playerNameInput + " are you ready to roll the dice with the king himself?\n")
+}
+
+console.log("")
+
+//player information stored in object
+let playerInfo =
+{
+    playerName: playerNameInput, difficulty: difficultyInput
+};
+
+//stores how many questions the player has got right and wrong
+let scoreStatus = 
+{
+   correctAnswers: 0,
+   wrongAnswers: 0
+}; 
+
 /*
 initialises question objects
     inputs =
@@ -48,7 +90,6 @@ function askQuestion(){
     //if answer is correct
     if(answer === questions[questionN].correctAnswer){
         console.log("Correct!")
-        //adds 1 to correct answers
         scoreStatus.correctAnswers += 1;
     }else{
         switch(playerInfo.difficulty){
@@ -144,7 +185,7 @@ WOW, ${playerInfo.playerName.toLocaleUpperCase()}! What a    \\/    \\/    |____
             time = printAfterPause(`${playerInfo.playerName.toLocaleUpperCase()} answered ${scoreStatus.correctAnswers} questions correctly!!!!!!`, time);
             
             //if the player got all questions right
-            if(wrong < 0){
+            if(wrong === 0){
                 time += 100;
                 time = printAfterPause(`                 _____ 
                 |       |      |  |\\   |
@@ -195,21 +236,6 @@ OH! look at the |       |______|  |   \\| meter!!!`,time);
     }
 }
 
-//--------------------------------------------------------------------------------------------
-//main global objects and arrays \/
-//player information stored in object
-let playerInfo =
-{
-    playerName: playerNameInput, difficulty: difficultyInput
-};
-
-//stores how many questions the player has got right and wrong
-let scoreStatus = 
-{
-   correctAnswers: 0,
-   wrongAnswers: 0
-}; 
-
 //the array which stores the questions
 let questions = [
     initQuestion("Name that red plumber\nA)Mario   B)Luigi\nC)Wario   D)Michael","a"),
@@ -229,40 +255,7 @@ let questions = [
     initQuestion("What game has been run on nearly everything\nA)Minecraft   B)Doom\nC)GTA6   D)Sonic The hedgehog 06","b")
 ]
 
-//--------------------------------------------------------------------------------------------
-//set up \/
-consoleClear(); //clears the terminal
-
-//get player info
-let playerNameInput = prompt.question("Please enter your name: ");
-let difficultyInput = "";
-let questionN = 0;
-let totalQuestions = 0;
-
-//validating difficulty input
-do{
-     difficultyInput = prompt.question("please choose a difficulty between easy, medium and hard: ");
-     difficultyInput = difficultyInput.toLowerCase();
-}while(difficultyInput != ("easy") && difficultyInput != ("medium") && difficultyInput != ("hard"));
-
-consoleClear();
-
-//set how many questions there are and an intro message
-if(difficultyInput == "easy"){
-    totalQuestions = 5;
-    console.log("STARRING MR.(ANT)TENNA, DON'T TOUCH THAT DIAL! IT'S TV TIME!");
-}else if(difficultyInput == "medium"){
-    totalQuestions = 10;
-    console.log("Welcome all to Gruntilda's lair, now be warned i'm no nice witch, player");
-}else if(difficultyInput == "hard"){
-    totalQuestions = 15;
-    console.log("Welcome " + playerNameInput + " are you ready to roll the dice with the king himself?")
-}
-
-console.log("")
-
-//--------------------------------------------------------------------------------------------
-//main gameplay loop \/
+//main gameplay loop
 for(let i=0; i<totalQuestions; i++){
     askQuestion();
 
@@ -270,7 +263,5 @@ for(let i=0; i<totalQuestions; i++){
     break;
  }
 }
-
-//--------------------------------------------------------------------------------------------
-//final results \/
+//final results
 displayResults(scoreStatus.wrongAnswers);
