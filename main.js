@@ -6,6 +6,7 @@ const kingDice = 2;
 
 //--------------------------------------------------------------------------------------------
 //set up \/
+
 consoleClear(); //clears the terminal
 
 //get player info
