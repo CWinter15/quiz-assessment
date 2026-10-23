@@ -1,3 +1,5 @@
+//this is just for testing. not for main assessment
+
 let word = "BLEHH";
 
 console.log(word.toLowerCase())
